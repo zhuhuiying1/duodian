@@ -2,8 +2,31 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// 引入axios
+import api from './api'
+// 全局引入rem和reset
+import './utils/htmlFont'
+import './assets/css/reset.css'
+// swiper样式
+import '../node_modules/swiper/swiper-bundle.min.css'
+// element ui
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+// 全局引入组件
+import ArticleList from './components/ArticleList.vue'
+Vue.component('ArticleList', ArticleList)
+// import BigTitle from './components/BigTitle.vue'
+// Vue.component('BigTitle', BigTitle)
+// import { LoadingPlugin, ToastPlugin, AlertPlugin } from 'vux'
+// Vue.use(LoadingPlugin)
+// Vue.use(ToastPlugin)
+// Vue.use(AlertPlugin)
+
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+// 注册axios
+Vue.use(api)
 
 new Vue({
   router,
