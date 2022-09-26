@@ -20,6 +20,7 @@ export default {
   background: #fff;
   position: fixed;
   top: 0;
+  z-index: 100;
   .search {
     @include wh(694px,64px);
     @include flex(flex-start,center);

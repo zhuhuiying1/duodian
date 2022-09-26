@@ -1,29 +1,22 @@
 <template>
-  <div class="hot-nav-box">
-    <el-carousel
-      trigger="click"
-      height="3.08rem"
-      :interval="5000"
-      arrow="never"
-      ref="slideCarousel"
-      :autoplay="false"
-      :loop="true"
-    >
+<div class="block">
+  <el-carousel
+    height="4.9rem"
+    :interval="5000"
+    arrow="never"
+    ref="slideCarousel"
+    :autoplay="false"
+    indicator-position="none"
+  >
     <el-carousel-item
-      v-for="(item,index) in Math.ceil(list.length / 10)"
+      v-for="(item,index) in list"
       :key="index"
     >
-      <dl
-        v-for="(sonItem,sonIndex) in list.slice(index*10, index*10+10)"
-        :key="sonIndex"
-      >
-        <dt>
-          <img :src="sonItem.icon" alt="">
-        </dt>
-        <dd>
-          {{sonItem.text}}
-        </dd>
-      </dl>
+      <img :src="item" alt="">
+      <div class="paging">
+        <span>{{index + 1}}</span>
+        <span>/{{list.length}}</span>
+      </div>
     </el-carousel-item>
   </el-carousel>
 </div>
@@ -31,7 +24,7 @@
 
 <script>
 export default {
-  name: 'mall-nav',
+  name: 'detail-swiper',
   data () {
     return {
     }
@@ -40,12 +33,12 @@ export default {
     list: Array
   },
   mounted () {
-    this.navBanner()
+    this.slideBanner()
   },
   methods: {
-    navBanner () {
+    slideBanner () {
       // 选中的轮播图
-      var box = document.querySelectorAll('.el-carousel__container')[1]
+      var box = document.querySelector('.el-carousel__container')
       var startPoint = 0
       var stopPoint = 0
       // 重置坐标
@@ -87,30 +80,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.hot-nav-box {
-  @include wh(100% , 312px);
-  margin-top: 14px;
-  background: #fff;
-  font-size: 24px;
-  .el-carousel__item{
-    @include wh(100% , 100%);
-    display: grid;
-    grid-template-rows: repeat(2 , 156px);
-    grid-template-columns: repeat(auto-fill , 20%);
-  }
-  dl {
-    @include wh(100% , 100%);
-    @include flex-column(center,center);
-    dt {
-      @include wh(auto,auto);
-      img {
-        @include wh (90px,90px);
-      }
-    }
-    dd {
-      @include wh(auto,auto);
-      margin-top: 4px;
+  ::v-deep(.el-carousel__item) {
+    img {
+      @include wh(100%,100%);
+      object-fit: cover;
     }
   }
-}
+  ::v-deep(.el-carousel__indicators) {
+    @include wh(auto, auto);
+    font-size: 24px;
+  }
+  .paging {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    z-index: 100;
+    font-size: 40px;
+    color: #999999;
+  }
 </style>

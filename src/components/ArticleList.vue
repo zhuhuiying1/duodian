@@ -1,6 +1,6 @@
 <template>
   <div class="article-list-box">
-    <dl
+    <router-link tag="dl" :to="`/detail/${item.id}`"
       v-for="(item,index) in list"
       :key="index"
     >
@@ -20,7 +20,7 @@
           <img src="@/assets/imgs/car@2x.png" alt="">
         </div>
       </dd>
-    </dl>
+    </router-link>
   </div>
 </template>
 
@@ -89,17 +89,13 @@ export default {
       }
       .cont-bottom {
         @include wh(66px,66px);
+        @include flex(center,center);
         background: #FE3113;
         margin-left: auto;
         margin-right: 0px;
         border-radius: 100%;
-        position: relative;
         img {
           @include wh (36px,36px);
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%,-50%);
         }
       }
     }

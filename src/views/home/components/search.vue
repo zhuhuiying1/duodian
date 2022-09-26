@@ -1,6 +1,6 @@
 <template>
   <div class="search-box">
-    <a href="javascript:;">
+    <router-link tag="a" to="/search">
       <span class="search-left">
         <img src="@/assets/imgs/图标@2x(1).png" alt="">
         <span>送至：北京八维研修学院</span>
@@ -9,7 +9,7 @@
       <span class="search-right">
         <img src="@/assets/imgs/图标@2x.png" alt="">
       </span>
-    </a>
+    </router-link>
   </div>
 </template>
 

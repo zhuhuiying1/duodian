@@ -15,15 +15,13 @@
 import Search from './components/search' // 搜索框
 import Banner from './components/banner' // 轮播图
 import MallNav from './components/MallNav' // 金刚位导航
-import TabBar from './components/TabBar' // 筛选导航
 import scrollBottom from '@/mixins/scrollBottom' // 引入mixins
 export default {
   name: 'HomePage',
   components: {
     Search,
     Banner,
-    MallNav,
-    TabBar
+    MallNav
   },
   mixins: [scrollBottom],
   scroll () {
@@ -39,7 +37,8 @@ export default {
         page: 1,
         page_ize: 10,
         classId: 1
-      }
+      },
+      pagePosition: 0
     }
   },
   created () {
@@ -49,25 +48,25 @@ export default {
     //   console.log(e)
     // })
     this.$api.home.base().then((res) => {
-      this.banner = res.data.data.banner
-      this.mall_nav = res.data.data.mall_nav
-      this.hot_nav = res.data.data.hot_nav
+      this.banner = res.data.banner
+      this.mall_nav = res.data.mall_nav
+      this.hot_nav = res.data.hot_nav
     })
   },
   methods: {
     change (val) {
-      this.$set(this.filterProduct, 'classId', val - 0)
+      this.$set(this.filterProduct, 'classId', val + 1)
       this.filterProduct.page = 1
     },
     async createProduct () {
       const res = await this.$api.product.data(this.filterProduct)
       if (this.filterProduct.page === 1) {
-        this.articleList = res.data.data
+        this.articleList = res.data
         if (this.$refs.tab.offsetTop < document.documentElement.scrollTop) {
           window.scrollTo(0, this.$refs.tab.offsetTop)
         }
       } else {
-        this.articleList = this.articleList.concat(res.data.data)
+        this.articleList = this.articleList.concat(res.data)
       }
     }
   },
@@ -77,6 +76,14 @@ export default {
       deep: true,
       immediate: true
     }
+  },
+  deactivated () {
+    this.pagePosition = document.documentElement.scrollTop
+  },
+  activated () {
+    window.scrollTo({
+      top: this.pagePosition
+    })
   }
 }
 </script>

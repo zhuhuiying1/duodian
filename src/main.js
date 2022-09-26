@@ -13,14 +13,12 @@ import '../node_modules/swiper/swiper-bundle.min.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // 全局引入组件
-import ArticleList from './components/ArticleList.vue'
+import ArticleList from './components/ArticleList.vue' // 商品列表
+import TabBar from './components/TabBar.vue' // 筛选导航
+import NumTag from './components/NumTag.vue' // 数量标签
 Vue.component('ArticleList', ArticleList)
-// import BigTitle from './components/BigTitle.vue'
-// Vue.component('BigTitle', BigTitle)
-// import { LoadingPlugin, ToastPlugin, AlertPlugin } from 'vux'
-// Vue.use(LoadingPlugin)
-// Vue.use(ToastPlugin)
-// Vue.use(AlertPlugin)
+Vue.component('TabBar', TabBar)
+Vue.component('NumTag', NumTag)
 
 Vue.use(ElementUI)
 

@@ -3,10 +3,10 @@
     <span
       v-for="(item,index) in list"
       :key="index"
-      :class="{'active':index+1===currentIndex}"
-      @click="change($event, index)"
+      :class="{'active':index===currentIndex}"
+      @click="change(index, item.categoryId)"
     >
-      {{item.text}}
+      {{item[tabName]}}
     </span>
   </div>
 </template>
@@ -15,17 +15,26 @@
 export default {
   name: 'tab-bar',
   props: {
-    list: Array
+    list: Array,
+    tabName: {
+      type: String,
+      default: 'text'
+    }
   },
   data () {
     return {
-      currentIndex: 1
+      currentIndex: 0
     }
   },
   methods: {
-    change (e, val) {
-      this.$emit('change', val + 1)
-      this.currentIndex = val + 1
+    change (val, categoryId) {
+      this.$emit('change', val, categoryId)
+      this.currentIndex = val
+    }
+  },
+  watch: {
+    list () {
+      this.currentIndex = 0
     }
   }
 }

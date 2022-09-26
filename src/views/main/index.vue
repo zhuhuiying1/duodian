@@ -1,6 +1,8 @@
 <template>
   <div class="main-page">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <div class="footer-nav">
       <router-link v-for="(item , index) in list" :key="index" :to="item.path" active-class="active">
         <dl>
@@ -67,6 +69,7 @@ export default {
       background: #fff;
       display: flex;
       align-items: center;
+      z-index: 100;
       a {
         flex-grow: 1;
         dl {

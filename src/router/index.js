@@ -31,6 +31,16 @@ const routes = [
         component: () => import('../views/mine/index.vue')
       }
     ]
+  },
+  {
+    path: '/detail/:id',
+    name: 'detail',
+    component: () => import('../views/detail/index.vue')
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('../views/search/index.vue')
   }
 ]
 
@@ -39,5 +49,8 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+const VueRouterPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (to) {
+  return VueRouterPush.call(this, to).catch(err => err)
+}
 export default router
