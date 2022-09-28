@@ -1,7 +1,7 @@
 <template>
   <div class="message-box">
     <div class="text">
-      <p class="name">我的昵称</p>
+      <p class="name">{{userInfo}}</p>
       <p class="signature">美好的一天</p>
     </div>
     <div class="head-photo">
@@ -11,10 +11,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'message-view',
   data () {
     return {}
+  },
+  computed: {
+    ...mapState('user', ['userInfo'])
   }
 }
 </script>

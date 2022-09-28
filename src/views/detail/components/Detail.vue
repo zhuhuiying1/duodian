@@ -1,6 +1,6 @@
 <template>
   <div class="detail-box" v-html="list">
-
+    {{list}}
   </div>
 </template>
 
@@ -12,6 +12,8 @@ export default {
   },
   props: {
     list: String
+  },
+  mounted () {
   }
 }
 </script>

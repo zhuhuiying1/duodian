@@ -1,6 +1,6 @@
 import axios from '@/utils/axios'
 
-const api = {
+export const api = {
   home: {
     base: () => axios.get('/home')
   },
@@ -12,6 +12,11 @@ const api = {
   },
   classify: {
     data: (params) => axios.get('/category', params)
+  },
+  user: {
+    verify: (params) => axios.get('/user/sendMessageCode', params),
+    login: (params) => axios.post('/user/login', params),
+    info: () => axios.get('/user/info')
   }
 }
 

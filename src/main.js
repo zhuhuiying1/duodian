@@ -29,5 +29,8 @@ Vue.use(api)
 new Vue({
   router,
   store,
+  created () {
+    this.$store.dispatch('user/getUserInfo')
+  },
   render: h => h(App)
 }).$mount('#app')

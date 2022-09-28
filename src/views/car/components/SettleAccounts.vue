@@ -25,7 +25,7 @@
 export default {
   name: 'settle-accounts',
   props: {
-    price: String
+    price: Number
   },
   data () {
     return {

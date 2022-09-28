@@ -27,8 +27,7 @@ export default {
     async dataInit () {
       const res = await this.$api.product.detail(this.$route.params.id)
       this.imgs = JSON.parse(res.data[0].images)
-      console.log(res.data[0].detail)
-      this.detail = JSON.parse(res.data[0].detail)
+      this.details = JSON.parse(res.data[0].detail)
     }
   }
 }
