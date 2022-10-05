@@ -1,23 +1,31 @@
 <template>
   <div class="search-box">
-    <router-link tag="a" to="/search">
-      <span class="search-left">
+    <a href="javascript:;">
+      <router-link to="/location" tag="span" class="search-left">
         <img src="@/assets/imgs/图标@2x(1).png" alt="">
-        <span>送至：北京八维研修学院</span>
+        <span class="location">送至：{{location.formattedAddress}}</span>
         <span class="right-icon">＞</span>
-      </span>
-      <span class="search-right">
+      </router-link>
+      <router-link to="/search" tag="span" class="search-right">
         <img src="@/assets/imgs/图标@2x.png" alt="">
-      </span>
-    </router-link>
+      </router-link>
+    </a>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'SearchCom',
   data () {
     return {}
+  },
+  computed: {
+    ...mapState('map', ['location'])
+  },
+  mounted () {
+    console.log(this.location)
+    console.log(11111)
   }
 }
 </script>
@@ -37,6 +45,11 @@ export default {
       img {
         @include wh(54px , 54px);
         margin-left: 16px;
+      }
+      .location {
+        @include wh(auto, auto);
+        max-width: 30vw;
+        @include ellipsis(1);
       }
       .right-icon {
         @include wh(auto,auto);

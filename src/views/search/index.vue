@@ -2,7 +2,9 @@
   <div class="search-page">
     <search @search="search" :inputRes="inputRes"  @input="input">
       <template>
-        <hint :list="hintList" :inputVal="inputRes" v-if="hintList.length" @search="hintSearch"></hint>
+        <transition class="animate__animated animate__bounce">
+          <hint :list="hintList" :inputVal="inputRes" v-if="hintList.length" @search="hintSearch"></hint>
+        </transition>
         <article-list :list="articleList" v-if="flag"></article-list>
       </template>
     </search>

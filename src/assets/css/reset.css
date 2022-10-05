@@ -47,15 +47,9 @@ input:focus,select:focus,textarea:focus {
 img {
     margin: 0;
 }
-a::selection {
-	background-color: #286a46;
-    color: #fff;
+.animate__animated.animate__slideInUp {
+	--animate-duration: .5s;
 }
-p::selection {
-	background-color: #286a46;
-    color: #fff;
-}
-span::selection {
-	background-color: #286a46;
-    color: #fff;
+.animate__animated.animate__slideOutDown {
+	--animate-duration: .5s;
 }

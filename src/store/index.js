@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // import { api } from '../api/index.js'
 import user from './user'
+import map from './map'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     // }
   },
   modules: {
-    user
+    user,
+    map
   }
 })

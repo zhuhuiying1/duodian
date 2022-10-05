@@ -70,6 +70,30 @@ const routes = [
     meta: {
       title: '登录页'
     }
+  },
+  {
+    path: '/location',
+    name: 'location',
+    component: () => import('../views/location/index.vue'),
+    meta: {
+      title: '定位页'
+    }
+  },
+  {
+    path: '/addpressing',
+    name: 'addpressing',
+    component: () => import('../views/addpressing/index.vue'),
+    meta: {
+      title: '正在定位'
+    }
+  },
+  {
+    path: '/addLocation',
+    name: 'addLoaction',
+    component: () => import('../views/addLocation/index.vue'),
+    meta: {
+      title: '手动添加位置'
+    }
   }
 ]
 
@@ -83,6 +107,7 @@ const router = new VueRouter({
 // 前置守卫
 // 需要登录的页面判断有没有token,如果没有就跳到登录页面
 router.beforeEach((to, from, next) => {
+  // 未登录页面跳转登录页面
   if (to.meta.isAuthenticated) {
     const token = localStorage.getItem('verify')
     if (token) {

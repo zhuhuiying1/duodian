@@ -29,5 +29,12 @@ module.exports = defineConfig({
         target: 'http://localhost:7001'
       }
     }
+  },
+  // 配置webpack,排除外部文件打包
+  // 使用amap地图,外部引入的js文件,不用这个会报错
+  configureWebpack: {
+    externals: {
+      AMap: 'AMap'
+    }
   }
 })
