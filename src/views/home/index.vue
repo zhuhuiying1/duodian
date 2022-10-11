@@ -35,7 +35,7 @@ export default {
       articleList: [],
       filterProduct: {
         page: 1,
-        page_ize: 10,
+        page_size: 10,
         classId: 1
       },
       pagePosition: 0

@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
     <div class="location-select">
-      {{location.city}} >
+      {{location.city || '北京'}} >
     </div>
     <div class="search">
       <i class="el-icon-search"></i>

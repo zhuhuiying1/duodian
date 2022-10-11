@@ -22,7 +22,7 @@ const format = {
         money = money.replace(reg, '$1,$2')
       }
       return money
-    },  
+    },
     set (val) {
       return val.replaceAll(',', '')
     }

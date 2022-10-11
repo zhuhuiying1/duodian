@@ -24,7 +24,7 @@ service.interceptors.response.use(function (response) {
   // 对响应错误做点什么
   const res = error.response
   console.log(res)
-  alert(res.data.message)
+  // alert(res.data.message)
   return Promise.reject(error)
 })
 

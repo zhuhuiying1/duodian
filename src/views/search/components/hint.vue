@@ -5,7 +5,7 @@
         v-for="(item, index) in list"
         :key="index"
         @click="search(item.title)"
-        v-html="highlight(item.title)"
+        v-html="highlight(item.text)"
       >
       </li>
     </ul>
