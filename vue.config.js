@@ -34,7 +34,8 @@ module.exports = defineConfig({
   // 使用amap地图,外部引入的js文件,不用这个会报错
   configureWebpack: {
     externals: {
-      AMap: 'AMap'
+      AMap: 'AMap',
+      AMapUI: 'AMapUI'
     }
   }
 })

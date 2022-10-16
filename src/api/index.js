@@ -17,6 +17,20 @@ export const api = {
     verify: (params) => axios.get('/user/sendMessageCode', params),
     login: (params) => axios.post('/user/login', params),
     info: () => axios.get('/user/info')
+  },
+  address: {
+    create: (params) => axios.post('/address', params),
+    list: () => axios.get('/address'),
+    update: (id, params) => axios.put('/address/' + id, params)
+  },
+  car: {
+    add: (params) => axios.post('/car', params),
+    list: () => axios.get('/car'),
+    update: (id, params) => axios.put('/car/' + id, params),
+    updateAll: (params) => axios.put('/car', params),
+    delete: (id) => axios.delete('/car/' + id)
+    // router.get('/api/car', controller.car.list)
+    // router.put('/api/car/:id', controller.car.update)
   }
 }
 

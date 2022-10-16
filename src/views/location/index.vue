@@ -8,7 +8,9 @@
       <hint :list="hintList" v-show="hintFlag" @commitHint="getHint"></hint>
     </transition>
     <shipping-address @getLocationHintList="getLocationHintList">
-      <template></template>
+      <template>
+        <history></history>
+      </template>
     </shipping-address>
     <!-- <transition
       enter-active-class="animate__animated animate__fadeInUp"
@@ -33,12 +35,14 @@ import AMap from 'AMap'
 import search from './components/search.vue'
 import ShippingAddress from './components/ShippingAddress.vue'
 import hint from './components/hint.vue'
+import history from './components/history.vue'
 export default {
   name: 'location-page',
   components: {
     search,
     ShippingAddress,
-    hint
+    hint,
+    history
   },
   data () {
     return {
@@ -83,6 +87,7 @@ export default {
       console.log('点击的地位为' + val)
       this.$store.commit('map/SET_LOCATION', val)
       this.locationHintFlag = flag
+      this.$router.back()
     },
     // 点击定位到当前位置获取提示
     getLocationHintList (res) {

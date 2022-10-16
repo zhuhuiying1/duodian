@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 // import { api } from '../api/index.js'
 import user from './user'
 import map from './map'
+import car from './car'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -29,6 +30,7 @@ export default new Vuex.Store({
   },
   modules: {
     user,
-    map
+    map,
+    car
   }
 })

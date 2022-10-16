@@ -22,6 +22,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 // // loading
 import Loading from './components/Loading/index.js'
 import Error from './components/ErrorHint/index.js'
+import Message from './components/Message/index.js'
 // Vue.component('ArticleList', ArticleList)
 // Vue.component('TabBar', TabBar)
 // Vue.component('NumTag', NumTag)
@@ -32,6 +33,7 @@ Vue.use(autoComponent)
 Vue.use(ElementUI)
 Vue.use(Loading)
 Vue.use(Error)
+Vue.use(Message)
 
 Vue.config.productionTip = false
 // 注册axios

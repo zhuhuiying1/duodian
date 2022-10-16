@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <input type="text" v-model="formatval" class="field-input">
+  <div class="input-wrap">
+    <input type="text" v-model="formatval" class="field-input" :placeholder="placeholder" v-bind="$attrs">
+    <slot>
+    </slot>
   </div>
 </template>
 
@@ -42,16 +44,18 @@ const format = {
 }
 export default {
   name: 'field-input',
+  // inhertAttrs: true,
   props: {
     value: [String, Number],
     type: {
       type: String,
       default: 'text'
-    }
+    },
+    placeholder: String
   },
   data () {
     return {
-      val: ''
+      val: this.value
     }
   },
   watch: {
@@ -76,10 +80,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div {
+.input-wrap {
+  @include flex(flex-start, center);
   flex-grow: 1;
   .field-input {
     @include wh(100%, auto);
+    flex-grow: 1;
     outline: none;
     border: 0px solid transparent;
   }

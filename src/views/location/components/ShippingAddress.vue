@@ -37,6 +37,7 @@ export default {
   @include wh(100%, auto);
   @include flex-column(flex-start, flex-start);
   flex-grow: 1;
+  overflow: auto;
   .title {
     @include wh(100%, 70px);
     flex-shrink: 0;
@@ -48,7 +49,7 @@ export default {
   }
   .history {
     @include wh(100%, auto);
-    flex: 1;
+    flex-grow: 1;
     overflow: auto;
     .null {
     @include wh(100%, 100%);

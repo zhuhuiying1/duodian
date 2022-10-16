@@ -76,7 +76,8 @@ const routes = [
     name: 'location',
     component: () => import('../views/location/index.vue'),
     meta: {
-      title: '定位页'
+      title: '定位页',
+      isAuthenticated: true
     }
   },
   {
@@ -93,6 +94,14 @@ const routes = [
     component: () => import('../views/addLocation/index.vue'),
     meta: {
       title: '手动添加位置'
+    }
+  },
+  {
+    path: '/map',
+    name: 'map',
+    component: () => import('../views/map/index.vue'),
+    meta: {
+      title: '选项地址'
     }
   }
 ]

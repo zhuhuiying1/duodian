@@ -2,16 +2,16 @@
   <div class="car-list-box">
     <ul>
       <li v-for="item in list" :key="item.id">
-        <span class="select-btn" @click="select">
-          <img src="@/assets/imgs/ShopCart_btn_UNSEL_gray 1 Copy@2x.png" alt="" v-if="0">
-          <img src="@/assets/imgs/分组 9@2x.png" alt="" v-if="1">
+        <span class="select-btn" @click="select(item.id, item.isActive)">
+          <img src="@/assets/imgs/ShopCart_btn_UNSEL_gray 1 Copy@2x.png" alt="" v-show="item.isActive !== '0'">
+          <img src="@/assets/imgs/分组 9@2x.png" alt="" v-show="item.isActive === '0'">
         </span>
         <div class="message">
           <img :src="item.img" alt="">
           <div class="message-right">
             <div class="right-top">
               <p>
-                {{item.title}}
+                {{item.name}}
               </p>
               <p>
                 {{item.message}}
@@ -20,16 +20,16 @@
             <div class="right-bottom">
               <p>
                 <span>
-                  ¥<span>{{item.price}}</span>
+                  ¥<span>{{item.price / 100}}</span>
                 </span>
-                <s>
+                <!-- <s>
                   ¥{{item.oldPrice}}
-                </s>
+                </s> -->
               </p>
               <div class="btn">
-                <img src="@/assets/imgs/Coupon_btn_DEDUCT_gray 1@2x.png" alt="">
-                <span>1</span>
-                <img src="@/assets/imgs/Coupon_btn_ADD_gray 1@2x.png" alt="">
+                <img src="@/assets/imgs/Coupon_btn_DEDUCT_gray 1@2x.png" alt="" @click="lower($event, item.num, item.id)">
+                <span>{{item.num}}</span>
+                <img src="@/assets/imgs/Coupon_btn_ADD_gray 1@2x.png" alt="" @click="upper(item.num, item.id)">
               </div>
             </div>
           </div>
@@ -46,7 +46,30 @@ export default {
     list: Array
   },
   methods: {
-    select () {
+    select (id, val) {
+      const isActive = val === '1' ? '0' : '1'
+      this.$emit('commitData', id, { isActive })
+    },
+    lower (e, num, id) {
+      if (num <= 1) {
+        e.target.style.opacity = '.8'
+        console.log(id)
+        this.$api.car.delete(id).then(() => {
+          this.$store.dispatch('car/getCarList')
+        }).catch((res) => {
+          console.log(res)
+        })
+      } else {
+        e.target.style.opacity = ''
+        num--
+        // this.commitStore(id, { num })
+        this.$emit('commitData', id, { num }) // 触发更新数据库并且重新刷新vuex
+      }
+    },
+    upper (num, id) {
+      num++
+      // this.commitStore(id, { num })
+      this.$emit('commitData', id, { num })
     }
   }
 }
@@ -64,7 +87,7 @@ export default {
       padding: 36px 30px 36px 28px;
       box-sizing: border-box;
       .select-btn {
-        @include wh(48px, 48px);
+        @include wh(32px, 32px);
         flex-shrink: 0;
         margin-right: 14px;
         img {

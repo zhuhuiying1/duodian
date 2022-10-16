@@ -11,7 +11,7 @@ export default {
     return {}
   },
   props: {
-    list: String
+    list: [String, Array]
   },
   mounted () {
   }

@@ -16,23 +16,37 @@
             <span>团购</span>
           </p>
         </div>
-        <div class="cont-bottom">
+        <div class="cont-bottom" @click.stop="addCar(item)">
           <img src="@/assets/imgs/car@2x.png" alt="">
         </div>
       </dd>
     </router-link>
+    <popover-box :show.sync="show" v-show="show" :message="productMessage"></popover-box>
   </div>
 </template>
 
 <script>
 export default {
   name: 'article-list',
+  data () {
+    return {
+      show: false,
+      productMessage: {}
+    }
+  },
   props: {
     list: Array
   },
   filters: {
     filterNum (val) {
       return val > 10000 ? (val / 10000).toFixed(1) + '万' : val
+    }
+  },
+  methods: {
+    addCar (val) {
+      this.show = true
+      console.log(val)
+      this.productMessage = val
     }
   }
 }

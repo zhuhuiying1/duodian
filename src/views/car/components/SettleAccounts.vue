@@ -1,8 +1,8 @@
 <template>
   <div class="settle-accounts-box">
     <div class="select-btn" @click="select">
-      <img src="@/assets/imgs/ShopCart_btn_UNSEL_gray 1 Copy@2x.png" alt="" v-if="!isSelect">
-      <img src="@/assets/imgs/分组 9@2x.png" alt="" v-if="isSelect">
+      <img src="@/assets/imgs/ShopCart_btn_UNSEL_gray 1 Copy@2x.png" alt="" v-if="!isAllActive">
+      <img src="@/assets/imgs/分组 9@2x.png" alt="" v-if="isAllActive">
       <span>全选</span>
     </div>
     <div class="settle">
@@ -11,34 +11,34 @@
           合计:
         </span>
         <span>
-          ¥{{price}}
+          ¥{{allPrice}}
         </span>
       </div>
       <div class="btn">
-        去结算(2)
+        去结算({{num}})
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'settle-accounts',
-  props: {
-    price: Number
-  },
+  // props: {
+  //   price: Number
+  // },
   data () {
     return {
-      isSelect: false
+      // isSelect: false
     }
+  },
+  computed: {
+    ...mapGetters('car', ['num', 'allPrice', 'isAllActive'])
   },
   methods: {
     select () {
-      if (this.isSelect) {
-        this.isSelect = false
-      } else {
-        this.isSelect = true
-      }
+      this.$emit('select', this.isAllActive)
     }
   }
 }
